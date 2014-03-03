@@ -1,0 +1,2 @@
+# instapoll
+### a Sails application
