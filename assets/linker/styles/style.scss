@@ -28,6 +28,22 @@ section {
   padding: 20px;
   form {
     @include span-columns(6);
+    @include shift(3);
+    fieldset {
+      legend {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
     textarea { width: 100%; }
+    @include media($tablet) {
+      @include span-columns(8);
+      @include shift(2);
+    }
+    @include media($mobile) {
+      @include span-columns(6);
+      @include shift(0);
+      input[type=text] { width: 100%; }
+    }
   }
 }

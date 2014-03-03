@@ -35,9 +35,8 @@ module.exports = {
       title: req.param('title'),
       description: req.param('description')
     };
-    Event.create(poll_obj).done(function(err, event) {
-      if (err)
-        console.log(err);
+    Poll.create(poll_obj).done(function(err, poll) {
+      if (err) return res.send(err, 500);
       Poll.publishCreate({ id: poll.id, title: poll.title });
       res.redirect('/poll');
     });
