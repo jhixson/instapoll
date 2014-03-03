@@ -1,0 +1,24 @@
+/*** BOURBON/NEAT ***/
+@import "bourbon/bourbon";
+@import "grid-settings";
+@import "neat/neat";
+@mixin omega-reset($nth, $fg-gutter) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter($fg-gutter); }
+  &:nth-child(#{$nth}+1) { clear: none }
+}
+/*** BOURBON/NEAT ***/
+
+/*** COLORS/FONTS ***/
+$body-bg: #fff;
+
+$lato: 'Lato', $helvetica;
+$helvetica: Helvetica, Arial, sans-serif;
+/*** COLORS/FONTS ***/
+
+
+
+body {
+  font-family: $lato;
+  font-size: 16px;
+  background-color: $body-bg;
+}
