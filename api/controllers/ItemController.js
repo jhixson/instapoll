@@ -1,5 +1,5 @@
 /**
- * PollController
+ * ItemController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -22,40 +22,27 @@ module.exports = {
 
   /**
    * Overrides for the settings in `config/controllers.js`
-   * (specific to PollController)
+   * (specific to ItemController)
    */
   _config: {},
 
-  new: function(req, res) {
-    res.view();
+  add: function(req, res) {
+    res.view({ poll_id: 1 });
   },
 
   create: function(req, res) {
-    var poll_obj = {
-      title: req.param('title'),
-      description: req.param('description')
-    };
-    Poll.create(poll_obj).done(function(err, poll) {
+    var items = req.param('name');
+    var poll_id = req.param('poll_id');
+    var item_arr = [];
+    _.map(items, function(item) {
+      item_arr.push({poll_id: poll_id, name: item});
+    });;
+    Item.create(item_arr).done(function(err, items) {
       if (err) return res.send(err, 500);
-      Poll.publishCreate({ id: poll.id, title: poll.title });
-      res.view('item/add', { poll_id: poll.id });
+      console.log("Items created:", items);
     });
-  },
-
-  subscribe: function(req, res) {
-    Poll.find(function(err, polls) {
-      if (err) return next(err);
- 
-      // subscribe this socket to the Poll model classroom
-      Poll.subscribe(req.socket);
- 
-      // subscribe this socket to the poll instance rooms
-      Poll.subscribe(req.socket, polls);
-
-      // This will avoid a warning from the socket for trying to render
-      // html over the socket.
-      res.send(200);
-    });
+    console.log(item_arr);
+    res.json(items);
   }
   
 };
