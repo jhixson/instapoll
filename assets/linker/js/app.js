@@ -31,7 +31,7 @@
 
     });
 
-    socket.get('/poll/subscribe');
+    socket.get('/vote/subscribe');
 
     ///////////////////////////////////////////////////////////
     // Here's where you'll want to add any custom logic for

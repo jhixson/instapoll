@@ -1,5 +1,5 @@
 /**
- * PollController
+ * VoteController
  *
  * @module      :: Controller
  * @description	:: A set of functions called `actions`.
@@ -22,32 +22,25 @@ module.exports = {
 
   /**
    * Overrides for the settings in `config/controllers.js`
-   * (specific to PollController)
+   * (specific to VoteController)
    */
   _config: {},
 
-  new: function(req, res) {
-    res.view();
-  },
+  subscribe: function(req, res) {
+    Vote.find(function(err, votes) {
+      if (err) return next(err);
+ 
+      // subscribe this socket to the Poll model classroom
+      Vote.subscribe(req.socket);
+ 
+      // subscribe this socket to the poll instance rooms
+      Vote.subscribe(req.socket, votes);
 
-  create: function(req, res) {
-    var poll_obj = {
-      title: req.param('title'),
-      description: req.param('description')
-    };
-    Poll.create(poll_obj).done(function(err, poll) {
-      if (err) return res.send(err, 500);
-      Poll.publishCreate({ id: poll.id, title: poll.title });
-      res.view('item/add', { poll_id: poll.id });
-    });
-  },
-
-  find: function(req, res) {
-    Poll.findOne(req.param('id')).exec(function(err, poll) {
-      Item.find().where({ poll_id: poll.id }).exec(function(err, items) {
-        res.view({ poll: poll, items: items });
-      });
+      // This will avoid a warning from the socket for trying to render
+      // html over the socket.
+      res.send(200);
     });
   }
+
   
 };
