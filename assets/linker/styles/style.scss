@@ -10,12 +10,10 @@
 
 /*** COLORS/FONTS ***/
 $body-bg: #fff;
-
+$true-blue: #0078e7;
 $lato: 'Lato', $helvetica;
 $helvetica: Helvetica, Arial, sans-serif;
 /*** COLORS/FONTS ***/
-
-
 
 body {
   font-family: $lato;
@@ -44,6 +42,13 @@ section {
       @include span-columns(6);
       @include shift(0);
       input[type=text] { width: 100%; }
+    }
+    a.add-item {
+      display: block;
+      margin: 12px 0;
+      padding: 2px 0;
+      color: $true-blue;
+      text-decoration: none;
     }
   }
 }
