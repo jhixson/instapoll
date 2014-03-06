@@ -1,13 +1,13 @@
 {
   "name": "instapoll",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "a Sails application",
   "dependencies": {
-    "sails": "0.9.9",
+    "sails": "~0.10.0",
     "grunt": "0.4.1",
-    "sails-disk": "~0.9.0",
-    "ejs": "0.8.4",
+    "sails-disk": "~0.10.0",
+    "ejs": "0.8.5",
     "optimist": "0.3.4",
     "grunt-contrib-sass": "~0.7.2"
   },

@@ -31,7 +31,15 @@
 
     });
 
+    socket.on('vote', function(data) {
+      log(data);
+    });
+
     socket.get('/vote/subscribe');
+
+    socket.get('/vote', function(votes) {
+      log(votes);
+    });
 
     ///////////////////////////////////////////////////////////
     // Here's where you'll want to add any custom logic for

@@ -8,16 +8,17 @@
 
 module.exports = {
 
+  autosubscribe: ['destroy', 'update'],
   attributes: {
   	
   	/* e.g.
   	nickname: 'string'
   	*/
-    item_id: {
-      type: 'integer',
-      required: true
+    user_id: 'integer',
+    ip: 'string',
+    item: {
+      model: 'item'
     }
-    
   }
 
 };

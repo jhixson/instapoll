@@ -13,13 +13,16 @@ module.exports = {
   	/* e.g.
   	nickname: 'string'
   	*/
-    poll_id: {
-      type: 'integer',
-      required: true
-    },
     name: {
       type: 'string',
       required: true
+    },
+    poll: {
+      model: 'poll'
+    },
+    votes: {
+      collection: 'vote',
+      via: 'item'
     }
   }
 

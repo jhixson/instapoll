@@ -21,7 +21,11 @@ module.exports = {
     private: {
       type: 'boolean',
       defaultsTo: false
-    } 
+    },
+    items: {
+      collection: 'item',
+      via: 'poll'
+    }
   }
 
 };

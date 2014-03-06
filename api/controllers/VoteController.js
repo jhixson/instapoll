@@ -26,21 +26,29 @@ module.exports = {
    */
   _config: {},
 
-  subscribe: function(req, res) {
-    Vote.find(function(err, votes) {
-      if (err) return next(err);
- 
-      // subscribe this socket to the Poll model classroom
-      Vote.subscribe(req.socket);
- 
-      // subscribe this socket to the poll instance rooms
-      Vote.subscribe(req.socket, votes);
-
-      // This will avoid a warning from the socket for trying to render
-      // html over the socket.
-      res.send(200);
+  create: function(req, res) {
+    var vote_obj = {
+      item_id: req.param('item_id'),
+      ip: getClientAddress(req)
+    };
+    Vote.destroy({  ip: vote_obj.ip }).done(function(err) {
+      if (err) return res.send(err, 500);
+      Vote.create(vote_obj).done(function(err, vote) {
+        if (err) return res.send(err, 500);
+        Vote.publishCreate({ id: vote.id });
+        res.json(vote);
+      });
     });
-  }
+  },
 
+  subscribe: function(req, res) {
+    Vote.watch(req.socket);
+    res.send(200);
+  }
   
+};
+
+var getClientAddress = function (req) {
+    return (req.headers['x-forwarded-for'] || '').split(',')[0] 
+        || req.connection.remoteAddress;
 };

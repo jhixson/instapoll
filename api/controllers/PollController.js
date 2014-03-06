@@ -43,10 +43,15 @@ module.exports = {
   },
 
   find: function(req, res) {
-    Poll.findOne(req.param('id')).exec(function(err, poll) {
-      Item.find().where({ poll_id: poll.id }).exec(function(err, items) {
-        res.view({ poll: poll, items: items });
-      });
+    Poll.findOne(req.param('id')).populate('items').done(function(err, poll) {
+      //console.log(poll);
+      res.view('poll/find', { poll: poll });
+    });
+  },
+
+  list: function(req, res) {
+    Poll.find().exec(function(err, polls) {
+      res.view({ polls: polls });
     });
   }
   

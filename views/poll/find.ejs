@@ -1,7 +1,7 @@
 <section>
   <h3><%= poll.title %></h3>
   <ul>
-    <% _.each(items, function (item) { %>
+    <% _.each(poll.items, function (item) { %>
       <li><%= item.name %></li>
     <% }) %>
   </ul>
