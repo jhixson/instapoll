@@ -24,7 +24,7 @@ body {
 section {
   @include outer-container;
   padding: 20px;
-  form {
+  .content {
     @include span-columns(6);
     @include shift(3);
     fieldset {
@@ -49,6 +49,56 @@ section {
       padding: 2px 0;
       color: $true-blue;
       text-decoration: none;
+    }
+    ul.items {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li a, &.results li {
+        display: inline-block;
+        padding: 4px 20px 8px 14px;
+        margin-bottom: 10px;
+        background-color: $true-blue;
+        color: #fff;
+        opacity: 0.6;
+        text-decoration: none;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        @include transition(all, .2s);
+        &:hover, &.active {
+          opacity: 1;
+          i { color: #fff; }
+        }
+        i {
+          color: tint($true-blue, 40%);
+          margin-right: 8px;
+          @include transition(all, .2s);
+        }
+      }
+      &.results li {
+        position: relative;
+        display: block;
+        opacity: 1;
+        color: #333;
+        padding: 6px 14px;
+        border: 1px solid #ccc;
+        background: #f6f6f6 url('/images/result_bg.png') no-repeat;
+        overflow: hidden;
+        p.item {
+          margin: 0;
+          padding: 0;
+          float: left;
+        }
+        span {
+          float: right;
+        }
+      }
+    }
+    i.cast-vote-icon { margin-right: 10px; vertical-align: top; }
+    &#vote_form button {
+      opacity: 0.6;
+      @include transition(all, .5s);
+      &.enabled { opacity: 1; }
     }
   }
 }

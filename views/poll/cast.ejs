@@ -1,0 +1,12 @@
+<section>
+  <form method="post" action="/vote" class="content" id="vote_form">
+    <h3><%= poll.title %></h3>
+    <ul class="items">
+      <% _.each(poll.items, function (item) { %>
+        <li><a href="#" data-item="<%= item.id %>"><i class="icon-checkmark"></i><%= item.name %></a></li>
+      <% }) %>
+    </ul>
+    <button class="pure-button button-success"><i class="icon-thumbs-up cast-vote-icon"></i>Vote!</button>
+    <input type="hidden" name="item_id" />
+  </form>
+</section>

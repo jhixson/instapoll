@@ -42,17 +42,32 @@ module.exports = {
     });
   },
 
-  find: function(req, res) {
-    Poll.findOne(req.param('id')).populate('items').done(function(err, poll) {
-      //console.log(poll);
-      res.view('poll/find', { poll: poll });
-    });
-  },
-
   list: function(req, res) {
     Poll.find().exec(function(err, polls) {
       res.view({ polls: polls });
     });
-  }
+  },
+
+  cast: function(req, res) {
+    Poll.findOne(req.param('id')).populate('items').done(function(err, poll) {
+      //console.log(poll);
+      res.view({ poll: poll });
+    });
+  },
+
+  results: function(req, res) {
+    Poll.findOne(req.param('id')).populate('items').done(function(err, poll) {
+      //console.log(poll);
+      _.each(poll.items, function(item) {
+        item.votes = [];
+        Vote.find().where({item: item.id}).exec(function(err, votes) {
+          item.votes = votes;
+        });
+      })
+      poll.items = _.sortBy(poll.items, function(item) { return item.votes.length }).reverse();
+      var total_votes = _.reduce(poll.items, function(sum, item){ return sum + item.votes.length });
+      res.view({ poll: poll, total_votes: total_votes });
+    });
+  },
   
 };

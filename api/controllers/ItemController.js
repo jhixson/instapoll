@@ -35,8 +35,8 @@ module.exports = {
     var poll_id = req.param('poll_id');
     var item_arr = [];
     _.map(items, function(item) {
-      item_arr.push({poll_id: poll_id, name: item});
-    });;
+      item_arr.push({poll: poll_id, name: item});
+    });
     Item.create(item_arr).done(function(err, items) {
       if (err) return res.send(err, 500);
       console.log("Items created:", items);

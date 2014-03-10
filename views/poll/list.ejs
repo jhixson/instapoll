@@ -1,8 +1,10 @@
 <section>
-  <h3>Polls!</h3>
-  <ul>
-    <% _.each(polls, function (poll) { %>
-      <li><%= poll.title %></li>
-    <% }) %>
-  </ul>
+  <div class="content">
+    <h3>Polls!</h3>
+    <ul>
+      <% _.each(polls, function (poll) { %>
+        <li><a href="/poll/cast/<%= poll.id %>"><%= poll.title %></a></li>
+      <% }) %>
+    </ul>
+  </div>
 </section>

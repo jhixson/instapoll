@@ -28,16 +28,14 @@ module.exports = {
 
   create: function(req, res) {
     var vote_obj = {
-      item_id: req.param('item_id'),
+      item: req.param('item_id'),
       ip: getClientAddress(req)
     };
-    Vote.destroy({  ip: vote_obj.ip }).done(function(err) {
+
+    Vote.create(vote_obj).done(function(err, vote) {
       if (err) return res.send(err, 500);
-      Vote.create(vote_obj).done(function(err, vote) {
-        if (err) return res.send(err, 500);
-        Vote.publishCreate({ id: vote.id });
-        res.json(vote);
-      });
+      Vote.publishCreate({ id: vote.id, item: vote.item });
+      return res.json(vote);
     });
   },
 

@@ -1,0 +1,12 @@
+<section>
+  <div class="content">
+    <h3><%= poll.title %></h3>
+    <ul class="items results" data-total-votes="<%= total_votes %>">
+      <% _.each(poll.items, function (item) { %>
+        <li data-item="<%= item.id %>" data-vote-count="<%= item.votes.length %>">
+          <p class="item"><%= item.name %></p><span><%= item.votes.length %></span>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</section>
