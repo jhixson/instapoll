@@ -4,7 +4,8 @@
     <ul class="items results" data-total-votes="<%= total_votes %>">
       <% _.each(poll.items, function (item) { %>
         <li data-item="<%= item.id %>" data-vote-count="<%= item.votes.length %>">
-          <p class="item"><%= item.name %></p><span><%= item.votes.length %></span>
+          <div class="bg"></div>
+          <label class="item"><%= item.name %></label><span><%= item.votes.length %></span>
         </li>
       <% }) %>
     </ul>

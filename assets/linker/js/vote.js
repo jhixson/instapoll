@@ -19,11 +19,9 @@ function bars() {
   $('ul.items').data('total-votes', total_votes);
   $('ul.items li[data-vote-count]').each(function() {
     var w = $(this).width();
-    var item_w = $(this).find('.item').width() + 10;
+    var item_w = $(this).find('.item').width() + 15;
     var bgsize = ($(this).data('vote-count') / total_votes) * 100;
-    $(this).animate({backgroundSize: bgsize+'%'}, 'fast', function() {
-      if((item_w / w) * 100 <= bgsize)
-        $(this).find('.item').css('color', '#fff');
-    });
+    $(this).find('.bg').css('width', bgsize+'%');
+    $(this).find('.item').toggleClass('lite', (item_w / w) * 100 <= bgsize);
   });
 }

@@ -11,6 +11,7 @@
 /*** COLORS/FONTS ***/
 $body-bg: #fff;
 $true-blue: #0078e7;
+$green: rgb(28, 184, 65);
 $lato: 'Lato', $helvetica;
 $helvetica: Helvetica, Arial, sans-serif;
 /*** COLORS/FONTS ***/
@@ -82,14 +83,28 @@ section {
         color: #333;
         padding: 6px 14px;
         border: 1px solid #ccc;
-        background: #f6f6f6 url('/images/result_bg.png') no-repeat;
+        background-color: #f6f6f6;
         overflow: hidden;
-        p.item {
+        .bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          background-color: tint($true-blue, 40%);
+          @include transition(all, .2s);
+        }
+        &:first-child .bg {
+          background-color: $green;
+        }
+        .item {
+          position: relative;
           margin: 0;
           padding: 0;
           float: left;
+          &.lite { color: #fff; }
         }
         span {
+          position: relative;
           float: right;
         }
       }

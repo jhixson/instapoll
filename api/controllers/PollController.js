@@ -61,7 +61,16 @@ module.exports = {
       _.each(poll.items, function(item) {
         item.votes = [];
         Vote.find().where({item: item.id}).exec(function(err, votes) {
+          // all votes
           item.votes = votes;
+          // one vote per item, per ip address
+          /*
+          item.votes = _.chain(votes)
+            .sortBy(function(vote) { return vote.createdAt })
+            .reverse()
+            .uniq(function(vote) { return vote.ip })
+            .value();
+          */
         });
       })
       poll.items = _.sortBy(poll.items, function(item) { return item.votes.length }).reverse();
