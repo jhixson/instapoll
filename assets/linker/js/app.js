@@ -17,7 +17,7 @@
   }
 
   socket.on('connect', function socketConnected() {
-    bars();
+    Instapoll.drawBars();
 
     // Listen for Comet messages from Sails
     socket.on('message', function messageReceived(message) {
@@ -36,7 +36,7 @@
       log(message);
       switch (message.verb) {
         case 'created':
-          addVote(message);
+          Instapoll.addVote(message);
           break;
 
         default:
@@ -48,28 +48,6 @@
 
     socket.get('/vote', function(votes) {
       log(votes);
-    });
-
-    $('ul.items li a').click(function(e) {
-      e.preventDefault();
-      var item = $(this).data('item');
-      $('ul.items li a').removeClass('active');
-      $(this).addClass('active');
-      $('#vote_form button').toggleClass('enabled', $('ul.items li a.active').length > 0);
-      /*
-      $.post('/vote', {item_id: item}, function(data) {
-        log(data);
-        window.location.href = "/";
-      });
-      */
-    });
-
-    $('#vote_form').submit(function(e) {
-      var item = $('ul.items li a.active');
-      if(item.length > 0)
-        $('input[name=item_id]').val(item.data('item'));
-      else
-        e.preventDefault();
     });
 
     ///////////////////////////////////////////////////////////

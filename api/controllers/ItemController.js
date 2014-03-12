@@ -26,10 +26,6 @@ module.exports = {
    */
   _config: {},
 
-  add: function(req, res) {
-    res.view({ poll_id: 1 });
-  },
-
   create: function(req, res) {
     var items = req.param('name');
     var poll_id = req.param('poll_id');

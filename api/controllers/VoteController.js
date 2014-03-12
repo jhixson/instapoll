@@ -35,7 +35,10 @@ module.exports = {
     Vote.create(vote_obj).done(function(err, vote) {
       if (err) return res.send(err, 500);
       Vote.publishCreate({ id: vote.id, item: vote.item });
-      return res.json(vote);
+      Item.findOne(vote.item).done(function(err, item) {
+        res.redirect('/poll/results/'+item.poll);
+      });
+      //return res.json(vote);
     });
   },
 

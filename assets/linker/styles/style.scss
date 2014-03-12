@@ -89,6 +89,7 @@ section {
           position: absolute;
           top: 0;
           left: 0;
+          width: 0%;
           height: 100%;
           background-color: tint($true-blue, 40%);
           @include transition(all, .2s);
@@ -109,7 +110,9 @@ section {
         }
       }
     }
-    i.cast-vote-icon { margin-right: 10px; vertical-align: top; }
+    &.pure-form-stacked input { margin: 0.25em 0 0.5em 0; }
+    .pure-button { margin-top: 5px; }
+    i.left { margin-right: 10px; vertical-align: 0; }
     &#vote_form button {
       opacity: 0.6;
       @include transition(all, .5s);
