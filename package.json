@@ -10,7 +10,8 @@
     "ejs": "0.8.5",
     "optimist": "0.3.4",
     "grunt-contrib-sass": "~0.7.2",
-    "sails-mongo": "~0.10.0-rc1"
+    "sails-mongo": "~0.10.0-rc1",
+    "forever": "~0.10.11"
   },
   "scripts": {
     "start": "node app.js",
