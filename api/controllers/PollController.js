@@ -37,7 +37,7 @@ module.exports = {
     };
     Poll.create(poll_obj).done(function(err, poll) {
       if (err) return res.send(err, 500);
-      Poll.publishCreate({ id: poll.id, title: poll.title });
+      //Poll.publishCreate({ id: poll.id, title: poll.title });
       res.view('item/add', { poll_id: poll.id });
     });
   },
@@ -56,27 +56,17 @@ module.exports = {
   },
 
   results: function(req, res) {
-    Poll.findOne(req.param('id')).populate('items').done(function(err, poll) {
-      //console.log(poll);
-      _.each(poll.items, function(item) {
-        item.votes = [];
-        Vote.find().where({item: item.id}).exec(function(err, votes) {
-          // all votes
-          item.votes = votes;
-          // one vote per item, per ip address
-          /*
-          item.votes = _.chain(votes)
-            .sortBy(function(vote) { return vote.createdAt })
-            .reverse()
-            .uniq(function(vote) { return vote.ip })
-            .value();
-          */
-        });
-      })
-      poll.items = _.sortBy(poll.items, function(item) { return item.votes.length }).reverse();
-      var total_votes = _.reduce(poll.items, function(sum, item){ return sum + item.votes.length });
-      res.view({ poll: poll, total_votes: total_votes });
+    Poll.findOne(req.param('id')).done(function(err, poll) {
+      Item.find().where({poll: poll.id}).populate('votes').done(function(err, items) {
+        items = _.sortBy(items, function(item) { return item.votes.length }).reverse();
+        var total_votes = _.reduce(items, function(sum, item){ return sum + item.votes.length });
+        res.view({ poll: poll, items: items, total_votes: total_votes });
+      });
     });
   },
   
+  subscribe: function(req, res) {
+    Poll.watch(req.socket);
+    res.send(200);
+  }
 };

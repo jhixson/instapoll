@@ -47,6 +47,10 @@ Instapoll = {
       $(this).find('.bg').css('width', bgsize+'%');
       $(this).find('.item').toggleClass('lite', (item_w / w) * 100 <= bgsize);
     });
+  },
+  pollAdded: function() {
+    $('ul.polls').prepend('<li style="display: none;"><a href="/poll/cast/'+message.data.id+'">'+message.data.title+'</a></li>').find('li:first').fadeIn('fast');
+    $('ul.polls li:eq(4) ~ li').remove();
   }
 };
 

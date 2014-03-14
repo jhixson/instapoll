@@ -35,10 +35,12 @@ module.exports = {
     });
     Item.create(item_arr).done(function(err, items) {
       if (err) return res.send(err, 500);
-      console.log("Items created:", items);
+      Poll.findOne(poll_id).done(function(err, poll) {
+        Poll.publishCreate({ id: poll.id, title: poll.title });
+        //console.log("Items created:", items);
+        res.json(items);
+      });
     });
-    console.log(item_arr);
-    res.json(items);
   }
   
 };

@@ -9,7 +9,8 @@
     "sails-disk": "~0.10.0",
     "ejs": "0.8.5",
     "optimist": "0.3.4",
-    "grunt-contrib-sass": "~0.7.2"
+    "grunt-contrib-sass": "~0.7.2",
+    "sails-mongo": "~0.10.0-rc1"
   },
   "scripts": {
     "start": "node app.js",

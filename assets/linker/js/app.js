@@ -46,8 +46,20 @@
 
     socket.get('/vote/subscribe');
 
-    socket.get('/vote', function(votes) {
-      log(votes);
+    socket.get('/vote');
+
+    socket.get('/poll/subscribe');
+
+    socket.on('poll', function(message) {
+      switch (message.verb) {
+        case 'created':
+          log('poll created: '+message);
+          Instapoll.pollAdded();
+          break;
+
+        default:
+          break;
+      }
     });
 
     ///////////////////////////////////////////////////////////

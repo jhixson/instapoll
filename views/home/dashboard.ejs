@@ -1,0 +1,15 @@
+<section>
+  <div class="content">
+    <a href="/poll/new" class="pure-button button-success full pad"><i class="icon-clipboard left"></i>Start a new poll</a>
+    <a href="/user/new" class="pure-button pure-button-primary split"><i class="icon-user left"></i>Sign up</a>
+    <a href="/" class="pure-button button-warning split"><i class="icon-login left"></i>Log in</a>
+  </div>
+  <div class="content">
+    <h3 class="polls">Recent polls</h3>
+    <ul class="polls">
+      <% _.each(polls, function (poll) { %>
+        <li><a href="/poll/cast/<%= poll.id %>"><%= poll.title %></a></li>
+      <% }) %>
+    </ul>
+  </div>
+</section>

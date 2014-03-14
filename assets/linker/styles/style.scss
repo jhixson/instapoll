@@ -22,6 +22,18 @@ body {
   background-color: $body-bg;
 }
 
+h1 {
+  text-align: center;
+  margin-bottom: 5px;
+  a { color: #000; text-decoration: none; }
+  i.icon-megaphone { vertical-align: top; margin-left: 5px; }
+}
+
+h3 {
+  margin: 0.25em 0 1em 0;
+  &.polls { margin: 1.25em 0 0.25em 0; }
+}
+
 section {
   @include outer-container;
   padding: 20px;
@@ -42,7 +54,7 @@ section {
     @include media($mobile) {
       @include span-columns(6);
       @include shift(0);
-      input[type=text] { width: 100%; }
+      input[type=text], input[type=email], input[type=password] { width: 100%; }
     }
     a.add-item {
       display: block;
@@ -110,13 +122,22 @@ section {
         }
       }
     }
+    ul.polls {
+      margin: 0.5em 0;
+    }
     &.pure-form-stacked input { margin: 0.25em 0 0.5em 0; }
-    .pure-button { margin-top: 5px; }
-    i.left { margin-right: 10px; vertical-align: 0; }
+    
     &#vote_form button {
       opacity: 0.6;
       @include transition(all, .5s);
       &.enabled { opacity: 1; }
+    }
+    button, a.pure-button {
+      &.full { @include span-columns(12); }
+      &.split { @include span-columns(6); }
+      &.pad { margin: 10px 0; }
+      &.pure-button { margin-top: 5px; }
+      i.left { margin-right: 10px; vertical-align: 0; }
     }
   }
 }
