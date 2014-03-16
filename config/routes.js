@@ -37,7 +37,9 @@ module.exports.routes = {
     view: 'home/dashboard'
   }
   */
-  '/': 'UserController.dashboard'
+  '/': 'UserController.dashboard',
+  '/signup': 'UserController.new',
+  '/login': 'SessionController.new'
   
   /*
   // But what if you want your home page to display

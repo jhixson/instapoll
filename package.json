@@ -11,7 +11,8 @@
     "optimist": "0.3.4",
     "grunt-contrib-sass": "~0.7.2",
     "sails-mongo": "~0.10.0-rc1",
-    "forever": "~0.10.11"
+    "forever": "~0.10.11",
+    "bcrypt": "~0.7.7"
   },
   "scripts": {
     "start": "node app.js",
