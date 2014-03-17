@@ -134,12 +134,13 @@ module.exports = function (grunt) {
   grunt.loadTasks(depsPath + '/grunt-contrib-cssmin/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-less/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-coffee/tasks');
-  grunt.loadTasks('node_modules/grunt-contrib-sass/tasks');
+  //grunt.loadTasks('node_modules/grunt-contrib-sass/tasks');
 
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    /*
     sass: {
       dev: {
         options: {
@@ -163,6 +164,7 @@ module.exports = function (grunt) {
         ]
       }
     },
+    */
 
     copy: {
       dev: {
@@ -449,7 +451,7 @@ module.exports = function (grunt) {
     'clean:dev',
     'jst:dev',
     'less:dev',
-    'sass:dev',
+    //'sass:dev',
     'copy:dev',    
     'coffee:dev'
   ]);
@@ -480,7 +482,7 @@ module.exports = function (grunt) {
     'clean:dev',
     'jst:dev',
     'less:dev',
-    'sass:dev',
+    //'sass:dev',
     'copy:dev',
     'coffee:dev',
     'concat',
