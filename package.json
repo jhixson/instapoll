@@ -12,7 +12,11 @@
     "grunt-contrib-sass": "~0.7.2",
     "sails-mongo": "~0.10.0-rc1",
     "forever": "~0.10.11",
-    "bcrypt": "~0.7.7"
+    "bcrypt": "~0.7.7",
+    "passport": "~0.2.0",
+    "passport-local": "~1.0.0",
+    "passport-facebook": "~1.0.3",
+    "passport-twitter": "~1.0.2"
   },
   "scripts": {
     "start": "node app.js",

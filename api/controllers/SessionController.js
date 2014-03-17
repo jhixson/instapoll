@@ -5,12 +5,46 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
+ var passport = require('passport');
+
 module.exports = {
-	
+
   new: function(req, res) {
-    req.session.authenticated = true;
-    console.log(req.session);
     res.view('user/login');
-  }
+  },
+
+  create: function(req, res, next) {
+    passport.authenticate('local', function (err, user, info) {
+      if (err) return res.send(err, 500);
+
+      // Authentication failed
+      if (!user) return res.redirect('/login');
+
+      // Log the user in
+      req.logIn(user, function (err) {
+        if (err) return res.send(err, 500);
+        res.redirect('/');
+      });
+
+    })(req, res, next);
+  },
+
+  /**
+   * Destroy a session (log out user)
+   */
+
+  destroy: function(req, res, next) {
+    if (!req.user) return res.send();
+
+    req.user.save(function (err) {
+      if (err) return res.send(err, 500);
+
+      // Log out the user
+      req.logout();
+
+      res.redirect('/');
+    });
+  },
+
 
 };

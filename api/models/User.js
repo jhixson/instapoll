@@ -23,9 +23,16 @@ module.exports = {
     toJSON: function() {
       var obj = this.toObject();
       delete obj.password;
-      //delete obj.encrypted_password;
+      delete obj.encrypted_password;
       delete obj._csrf;
       return obj;
+    },
+
+    validatePassword: function(candidatePassword, next) {
+      bcrypt.compare(candidatePassword, this.encrypted_password, function (err, valid) {
+        if(err) return next(err);
+        next(null, valid);
+      });
     }
 
 	},
