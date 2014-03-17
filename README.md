@@ -5,7 +5,7 @@ Instapoll is a basic voting app built on the awesome [Sails.js](https://github.c
 
 - ~~Creating polls~~
 - ~~Creating items for voting~~
-- Creating user accounts
+- ~~Creating user accounts~~
   - Saving polls to user accounts
 - ~~Displaying vote results in real-time~~
 - Creating a URL scheme for sharing
