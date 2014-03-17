@@ -1,1 +1,1 @@
-web: forever start app.js --prod
+web: node app.js

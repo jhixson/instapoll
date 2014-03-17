@@ -20,8 +20,8 @@ module.exports.adapters = {
 
   mongo: {
     module   : 'sails-mongo',
-    url      : process.env.MONGOLAB_URI || process.env.DB_URL,
-    schema   : true
+    url      : process.env.MONGOLAB_URI || process.env.DB_URL
+    //schema   : true
   },
 
   // Persistent adapter for DEVELOPMENT ONLY
