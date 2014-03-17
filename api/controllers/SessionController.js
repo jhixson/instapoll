@@ -14,7 +14,7 @@ module.exports = {
   },
 
   create: function(req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
+    passport.authenticate('local', { failureRedirect: '/login' }, function (err, user) {
       if (err) return res.send(err, 500);
 
       // Authentication failed
@@ -26,6 +26,15 @@ module.exports = {
         res.redirect('/');
       });
 
+    })(req, res, next);
+  },
+
+  facebook: function (req, res, next) {
+    passport.authenticate('facebook', { failureRedirect: '/login', scope: ['email'] }, function (err, user) {
+      req.logIn(user, function (err) {
+        if (err) return res.send(err, 500);
+        res.redirect('/');
+      });
     })(req, res, next);
   },
 

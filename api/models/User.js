@@ -16,9 +16,16 @@ module.exports = {
       unique: true
     },
 
+    email: {
+      type: 'string',
+      email: true
+    },
+
     encrypted_password: {
       type: 'string'
     },
+
+    uid: 'integer',
 
     toJSON: function() {
       var obj = this.toObject();
@@ -41,6 +48,28 @@ module.exports = {
     bcrypt.hash(values.password, 10, function(err, encrypted_password) {
       values.encrypted_password = encrypted_password;
       next();
+    });
+  },
+
+  findOrCreate: function(profile, next) {
+    User.findOne().where({uid: parseInt(profile.id)}).done(function(err, user) {
+      if(err) return next(err);
+
+      if(user) {
+        return next(null, user);
+      }
+      else {
+        var user_obj = {
+          uid: parseInt(profile.id),
+          username: profile.username || profile.displayName
+        };
+        if(profile.emails && profile.emails[0] && profile.emails[0].value) 
+          user_obj.email = profile.emails[0].value;
+
+        User.create(user_obj).done(function (err, user) {
+          return next(err, user);
+        });
+      }
     });
   }
 

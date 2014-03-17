@@ -6,7 +6,8 @@
  */
 
 var passport = require( "passport" )
-  , LocalStrategy = require('passport-local').Strategy;
+  , LocalStrategy = require('passport-local').Strategy
+  , FacebookStrategy = require('passport-facebook').Strategy;
             
 /**
  * Passport setup
@@ -30,7 +31,7 @@ passport.deserializeUser( function (userId, next) {
  * Passport Local Strategy
  */
 
-passport.use( new LocalStrategy(
+passport.use(new LocalStrategy(
   function (username, password, next) {
     User.findOne().where({username: username}).exec(function (err, user) {
       if(err) return next(err);
@@ -50,6 +51,22 @@ passport.use( new LocalStrategy(
         // We are successfully authenticated, return the user instance
         next(null, user);
       });
+    });
+  }
+));
+
+passport.use(new FacebookStrategy({
+    clientID: '682143215175928',
+    clientSecret: 'af03de41ccc5ba563f37d63b3a5227af',
+    callbackURL: "http://localhost:1337/session/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, next) {
+
+    User.findOrCreate(profile, function(err, user) {
+      if (err) return next(err);
+
+      // We sucessfully authed via Facebook, continue with the user instance
+      next(null, user);
     });
   }
 ));
