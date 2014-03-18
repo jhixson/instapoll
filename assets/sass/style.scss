@@ -134,16 +134,30 @@ section {
     }
     button, a.pure-button {
       &.full { @include span-columns(12); }
-      &.split { @include span-columns(6); }
+      &.split {
+        @include span-columns(6);
+        &.button-facebook, &.button-twitter {
+          @include media($tablet) {
+            @include span-columns(12);
+            margin-bottom: 5px;
+          }
+        }
+      }
       &.pad { margin: 10px 0; }
       &.pure-button { margin-top: 5px; }
       i.left { margin-right: 10px; vertical-align: 0; }
+      i.right { margin-left: 5px; vertical-align: text-bottom; }
     }
     hr {
       height: 1px;
       border: none;
       color: #e5e5e5;
       background-color: #e5e5e5;
+    }
+    a.small {
+      display: inline-block;
+      font-size: 12px;
+      margin-left: 10px;
     }
   }
 }

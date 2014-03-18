@@ -160,6 +160,15 @@ section {
       width: 48.68798%; }
       section .content button.split:last-child, section .content a.pure-button.split:last-child {
         margin-right: 0; }
+      @media screen and (max-width: 768px) {
+        section .content button.split.button-facebook, section .content button.split.button-twitter, section .content a.pure-button.split.button-facebook, section .content a.pure-button.split.button-twitter {
+          display: block;
+          float: left;
+          margin-right: 2.62404%;
+          width: 100%;
+          margin-bottom: 5px; }
+          section .content button.split.button-facebook:last-child, section .content button.split.button-twitter:last-child, section .content a.pure-button.split.button-facebook:last-child, section .content a.pure-button.split.button-twitter:last-child {
+            margin-right: 0; } }
     section .content button.pad, section .content a.pure-button.pad {
       margin: 10px 0; }
     section .content button.pure-button, section .content a.pure-button.pure-button {
@@ -167,8 +176,15 @@ section {
     section .content button i.left, section .content a.pure-button i.left {
       margin-right: 10px;
       vertical-align: 0; }
+    section .content button i.right, section .content a.pure-button i.right {
+      margin-left: 5px;
+      vertical-align: text-bottom; }
     section .content hr {
       height: 1px;
       border: none;
       color: #e5e5e5;
       background-color: #e5e5e5; }
+    section .content a.small {
+      display: inline-block;
+      font-size: 12px;
+      margin-left: 10px; }

@@ -1,14 +1,14 @@
 <section>
   <form action="/item" method="post" class="pure-form pure-form-stacked content">
     <fieldset>
-      <legend>Add items to poll</legend>
+      <legend>Add items to your poll</legend>
 
       <input type="text" name="name[]" placeholder="Name of item..." />
 
       <a href="#" class="add-item">Add another <i class="icon-plus"></i></a>
 
       <input type="hidden" name="poll_id" value="<%= poll_id %>" />
-      <button type="submit" class="pure-button button-success">Done!</button>
+      <button type="submit" class="pure-button button-success">Create poll<i class="icon-checkmark right"></i></button>
     </fieldset>
   </form>
 </section>
