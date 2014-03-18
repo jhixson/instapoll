@@ -7,7 +7,8 @@
 
 var passport = require( "passport" )
   , LocalStrategy = require('passport-local').Strategy
-  , FacebookStrategy = require('passport-facebook').Strategy;
+  , FacebookStrategy = require('passport-facebook').Strategy
+  , TwitterStrategy = require('passport-twitter').Strategy;
             
 /**
  * Passport setup
@@ -66,6 +67,21 @@ passport.use(new FacebookStrategy({
       if (err) return next(err);
 
       // We sucessfully authed via Facebook, continue with the user instance
+      next(null, user);
+    });
+  }
+));
+
+passport.use(new TwitterStrategy({
+    consumerKey: 'uOstxO28GFwg3JJN5scLYA',
+    consumerSecret: 'JpdHLvVZTLBx8Bk0WnUXLKMhRN6QP8AsvMVxftgSU',
+    callbackURL: process.env.NODE_ENV == "production" ? "http://instapoll.herokuapp.com/session/twitter/callback" : "http://wutang.local:1337/session/twitter/callback"
+  },
+  function(accessToken, refreshToken, profile, next) {
+    User.findOrCreate(profile, function(err, user) {
+      if (err) return next(err);
+
+      // We sucessfully authed via Twitter, continue with the user instance
       next(null, user);
     });
   }

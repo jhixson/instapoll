@@ -38,6 +38,15 @@ module.exports = {
     })(req, res, next);
   },
 
+  twitter: function (req, res, next) {
+    passport.authenticate('twitter', { failureRedirect: '/login', scope: ['email'] }, function (err, user) {
+      req.logIn(user, function (err) {
+        if (err) return res.send(err, 500);
+        res.redirect('/');
+      });
+    })(req, res, next);
+  },
+
   /**
    * Destroy a session (log out user)
    */

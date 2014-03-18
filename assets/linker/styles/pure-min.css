@@ -40,3 +40,8 @@ Copyright (c) Nicolas Gallagher and Jonathan Neal
 .button-facebook {
   background: #3b5998;
 }
+
+.button-twitter {
+  background: #eaeaea;
+  color: #55acee;
+}
