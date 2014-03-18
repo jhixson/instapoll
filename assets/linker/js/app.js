@@ -54,7 +54,7 @@
       switch (message.verb) {
         case 'created':
           log('poll created: '+message);
-          Instapoll.pollAdded();
+          Instapoll.pollAdded(message);
           break;
 
         default:
