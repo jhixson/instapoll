@@ -1,8 +1,13 @@
 <section>
   <div class="content">
     <a href="/poll/new" class="pure-button button-success full pad"><i class="icon-clipboard left"></i>Start a new poll</a>
-    <a href="/user/new" class="pure-button pure-button-primary split"><i class="icon-user left"></i>Sign up</a>
-    <a href="/login" class="pure-button button-warning split"><i class="icon-login left"></i>Log in</a>
+    <% if(_.isUndefined(user)) { %>
+      <a href="/user/new" class="pure-button pure-button-primary split"><i class="icon-user left"></i>Sign up</a>
+      <a href="/login" class="pure-button button-warning split"><i class="icon-login left"></i>Log in</a>
+    <% } else { %>
+      <a href="#" class="pure-button pure-button-primary split"><i class="icon-archive left"></i>My polls</a>
+      <a href="/logout" class="pure-button button-warning split"><i class="icon-logout left"></i>Log out</a>
+    <% } %>
   </div>
   <div class="content">
     <h3 class="polls">Recent polls</h3>

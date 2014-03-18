@@ -16,7 +16,7 @@ module.exports = {
       .reverse()
       .take(5)
       .value();
-      res.view('home/dashboard', { polls: polls });
+      res.view('home/dashboard', { polls: polls, user: req.user });
     });
   },
 
