@@ -49,6 +49,10 @@ module.exports = {
   },
 
   cast: function(req, res) {
+    var poll_id = req.param('id');
+    if(req.cookies.instapoll_p && _.contains(req.cookies.instapoll_p.split(','), poll_id))
+      return res.redirect('/poll/results/'+poll_id);
+
     Poll.findOne(req.param('id')).populate('items').done(function(err, poll) {
       //console.log(poll);
       res.view({ poll: poll });
@@ -56,6 +60,7 @@ module.exports = {
   },
 
   results: function(req, res) {
+    //console.log(req.cookies.instapoll_p);
     Poll.findOne(req.param('id')).done(function(err, poll) {
       Item.find().where({poll: poll.id}).populate('votes').done(function(err, items) {
         items = _.sortBy(items, function(item) { return item.votes.length }).reverse();

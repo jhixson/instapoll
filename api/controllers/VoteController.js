@@ -32,10 +32,15 @@ module.exports = {
       ip: getClientAddress(req)
     };
 
+    var polls_voted = _.isUndefined(req.cookies.instapoll_p) ? [] : req.cookies.instapoll_p.split(',');
+
     Vote.create(vote_obj).done(function(err, vote) {
       if (err) return res.send(err, 500);
       Vote.publishCreate({ id: vote.id, item: vote.item });
       Item.findOne(vote.item).done(function(err, item) {
+        var a_month = 1000 * 60 * 60 * 24 * 30;
+        polls_voted.push(item.poll);
+        res.cookie('instapoll_p', _.uniq(polls_voted).join(','), { maxAge: a_month });
         res.redirect('/poll/results/'+item.poll);
       });
       //return res.json(vote);
