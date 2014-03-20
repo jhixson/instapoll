@@ -22,6 +22,12 @@ module.exports = {
 
   new: function(req, res) {
     res.view();
+  },
+
+  polls: function(req, res) {
+    User.findOne(req.user.id).populate('polls').done(function(err, user) {
+      res.view({ user: user });
+    });
   }
 	
 };

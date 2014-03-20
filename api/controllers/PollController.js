@@ -33,7 +33,8 @@ module.exports = {
   create: function(req, res) {
     var poll_obj = {
       title: req.param('title'),
-      description: req.param('description')
+      description: req.param('description'),
+      user: req.user.id
     };
     Poll.create(poll_obj).done(function(err, poll) {
       if (err) return res.send(err, 500);

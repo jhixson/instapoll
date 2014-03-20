@@ -1,0 +1,13 @@
+<section>
+  <div class="content">
+    <a href="/poll/new" class="pure-button button-success full pad"><i class="icon-clipboard left"></i>Start a new poll</a>
+  </div>
+  <div class="content">
+    <h3 class="polls">My polls</h3>
+    <ul class="polls">
+      <% _.each(user.polls, function (poll) { %>
+        <li><a href="/poll/cast/<%= poll.id %>"><%= poll.title %></a></li>
+      <% }) %>
+    </ul>
+  </div>
+</section>

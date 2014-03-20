@@ -59,7 +59,7 @@ passport.use(new LocalStrategy(
 passport.use(new FacebookStrategy({
     clientID: '682143215175928',
     clientSecret: 'af03de41ccc5ba563f37d63b3a5227af',
-    callbackURL: process.env.NODE_ENV == "production" ? "http://instapoll.herokuapp.com/session/facebook/callback" : "http://localhost:1337/session/facebook/callback"
+    callbackURL: process.env.NODE_ENV == "production" ? "http://instapoll.herokuapp.com/session/facebook/callback" : "http://wutang.local:1337/session/facebook/callback"
   },
   function(accessToken, refreshToken, profile, next) {
 

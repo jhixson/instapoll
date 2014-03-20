@@ -8,7 +8,7 @@
 
 module.exports = {
 
-  autosubscribe: ['destroy', 'update'],
+  //autosubscribe: ['destroy', 'update'],
   attributes: {
   	
   	/* e.g.
@@ -26,6 +26,9 @@ module.exports = {
     items: {
       collection: 'item',
       via: 'poll'
+    },
+    user: {
+      model: 'user'
     }
   }
 
