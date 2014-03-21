@@ -38,7 +38,7 @@ module.exports = {
       Poll.findOne(poll_id).done(function(err, poll) {
         Poll.publishCreate({ id: poll.id, title: poll.title });
         //console.log("Items created:", items);
-        res.json(items);
+        res.redirect('/poll/cast/'+poll_id);
       });
     });
   }

@@ -27,6 +27,9 @@ h3 {
   h3.polls {
     margin: 1.25em 0 0.25em 0; }
 
+p.center {
+  text-align: center; }
+
 section {
   *zoom: 1;
   max-width: 960px;

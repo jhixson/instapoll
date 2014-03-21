@@ -9,12 +9,14 @@
       <a href="/logout" class="pure-button button-warning split"><i class="icon-logout left"></i>Log out</a>
     <% } %>
   </div>
-  <div class="content">
-    <h3 class="polls">Recent polls</h3>
-    <ul class="polls">
-      <% _.each(polls, function (poll) { %>
-        <li><a href="/poll/cast/<%= poll.id %>"><%= poll.title %></a></li>
-      <% }) %>
-    </ul>
-  </div>
+  <% if(polls.length) { %>
+    <div class="content">
+      <h3 class="polls">Recent polls</h3>
+      <ul class="polls">
+        <% _.each(polls, function (poll) { %>
+          <li><a href="/poll/cast/<%= poll.id %>"><%= poll.title %></a></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
 </section>

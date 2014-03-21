@@ -34,6 +34,8 @@ h3 {
   &.polls { margin: 1.25em 0 0.25em 0; }
 }
 
+p.center { text-align: center; }
+
 section {
   @include outer-container;
   padding: 20px;

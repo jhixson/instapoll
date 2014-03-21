@@ -15,11 +15,6 @@ module.exports = {
 
   create: function(req, res, next) {
     passport.authenticate('local', { failureRedirect: '/login' }, function (err, user) {
-      if (err) return res.send(err, 500);
-
-      // Authentication failed
-      if (!user) return res.redirect('/login');
-
       // Log the user in
       req.logIn(user, function (err) {
         if (err) return res.send(err, 500);
