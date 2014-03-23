@@ -11,7 +11,7 @@ module.exports = {
     Poll.find().populate('items').exec(function(err, polls) {
       //polls = _.reject(polls, function(poll) { return poll.items.length == 0 });
       polls = _.chain(polls)
-      .reject(function(poll) { return poll.items.length == 0 })
+      .reject(function(poll) { return poll.items.length == 0 || poll.private })
       .sortBy('createdAt')
       .reverse()
       .take(5)

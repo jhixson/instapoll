@@ -33,9 +33,10 @@ module.exports = {
   create: function(req, res) {
     var poll_obj = {
       title: req.param('title'),
-      description: req.param('description'),
-      user: req.user.id
+      description: req.param('description')
     };
+    if(req.user)
+      poll_obj.user = req.user.id
     Poll.create(poll_obj).done(function(err, poll) {
       if (err) return res.send(err, 500);
       //Poll.publishCreate({ id: poll.id, title: poll.title });
