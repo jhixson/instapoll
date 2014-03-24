@@ -1,12 +1,18 @@
 Instapoll = {
   init: function() {
     $('a.add-item').click(Instapoll.addItemField);
+    $('form').on('click', 'a.remove-item', Instapoll.removeItemField);
     $('ul.items li a').click(Instapoll.selectItem);
     $('#vote_form').submit(Instapoll.submitVote);
   },
   addItemField: function(e) {
     e.preventDefault();
-    $('input[name^=name]:first').clone().insertBefore($(this)).val('').focus();
+    $('input[name^=name]:first').clone().insertBefore($(this)).val('').focus().after('<a href="#" class="remove-item"><i class="icon-minus"></i></a>');
+  },
+  removeItemField: function(e) {
+    e.preventDefault();
+    $(this).prev('input').remove();
+    $(this).remove();
   },
   selectItem: function(e) {
     e.preventDefault();

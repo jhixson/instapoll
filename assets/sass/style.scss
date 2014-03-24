@@ -128,12 +128,21 @@ section {
       margin: 0.5em 0;
     }
     &.pure-form-stacked input { margin: 0.25em 0 0.5em 0; }
-    
-    &#vote_form button {
-      opacity: 0.6;
-      @include transition(all, .5s);
-      &.enabled { opacity: 1; }
+    &.pure-form-stacked input[type=text] { display: inline-block; }
+    a.remove-item {
+      color: #ca3c3c;
+      text-decoration: none;
+      i { margin-left: 5px; }
     }
+    &#vote_form {
+      //h3 { float: left; }
+      button {
+        opacity: 0.6;
+        @include transition(all, .5s);
+        &.enabled { opacity: 1; }
+      }
+    }
+    .addthis_toolbox { float: right; margin-top: 16px; }
     button, a.pure-button {
       &.full { @include span-columns(12); }
       &.split {
