@@ -15,8 +15,6 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
-var _ = require('lodash');
-
 module.exports = {
 
   /**
