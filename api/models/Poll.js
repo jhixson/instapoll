@@ -8,7 +8,7 @@
 
 module.exports = {
 
-  //autosubscribe: ['destroy', 'update'],
+  autosubscribe: ['destroy', 'update'],
   attributes: {
   	
   	/* e.g.
