@@ -15,10 +15,9 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
-module.exports = {
-    
-  
+ var _ = require('lodash');
 
+module.exports = {
 
   /**
    * Overrides for the settings in `config/controllers.js`

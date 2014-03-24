@@ -5,6 +5,8 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
+ var _ = require('lodash');
+
 module.exports = {
 
   dashboard: function(req, res) {
@@ -16,7 +18,7 @@ module.exports = {
       .reverse()
       .take(5)
       .value();
-      res.view('home/dashboard', { polls: polls, user: req.user, title: 'Welcome' });
+      res.view('home/dashboard', { polls: polls, user: req.user });
     });
   },
 

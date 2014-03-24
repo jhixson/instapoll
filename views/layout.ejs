@@ -6,6 +6,9 @@
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <!--  
@@ -94,8 +97,12 @@
     <script src="/linker/js/sails.io.js"></script>
     <script src="/linker/js/app.js"></script>
     <script src="/linker/js/jquery.js"></script>
-    <script src="/linker/js/instapoll.js"></script>
     <script src="/linker/js/lodash.js"></script>
+    <script src="/linker/js/instapoll.js"></script>
     <!--SCRIPTS END-->
+
+    <!-- This bit o' JS keeps an iPhone "standalone" app from opening Safari when clicking on links. -->
+    <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
+
   </body>
 </html>
