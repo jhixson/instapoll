@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%- title %></title>
+    <title><%- title ? title + " | " + page_title : page_title %></title>
+    <meta name="description" content="Quickly create simple polls with real-time results." />
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

@@ -33,14 +33,19 @@ module.exports = {
     _.map(items, function(item) {
       item_arr.push({poll: poll_id, name: item});
     });
-    Item.create(item_arr).done(function(err, items) {
-      if (err) return res.send(err, 500);
-      Poll.findOne(poll_id).done(function(err, poll) {
-        Poll.publishCreate({ id: poll.id, title: poll.title });
-        //console.log("Items created:", items);
-        res.redirect('/poll/cast/'+poll_id);
+    if(item_arr.length) {
+      Item.create(item_arr).done(function(err, items) {
+        if (err) return res.send(err, 500);
+        Poll.findOne(poll_id).done(function(err, poll) {
+          Poll.publishCreate({ id: poll.id, title: poll.title });
+          //console.log("Items created:", items);
+          res.redirect('/poll/cast/'+poll_id);
+        });
       });
-    });
+    }
+    else {
+      res.view('item/add', { poll_id: poll_id, title: 'Add items' })
+    }
   }
   
 };

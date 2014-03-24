@@ -10,7 +10,7 @@
 module.exports = {
 
   new: function(req, res) {
-    res.view('user/login');
+    res.view('user/login', { title: 'Log in' });
   },
 
   create: function(req, res, next) {

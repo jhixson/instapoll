@@ -16,17 +16,17 @@ module.exports = {
       .reverse()
       .take(5)
       .value();
-      res.view('home/dashboard', { polls: polls, user: req.user });
+      res.view('home/dashboard', { polls: polls, user: req.user, title: 'Welcome' });
     });
   },
 
   new: function(req, res) {
-    res.view();
+    res.view({ title: 'Sign up' });
   },
 
   polls: function(req, res) {
     User.findOne(req.user.id).populate('polls').done(function(err, user) {
-      res.view({ user: user });
+      res.view({ user: user, title: 'My polls' });
     });
   }
 	
