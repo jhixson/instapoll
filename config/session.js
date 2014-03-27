@@ -34,7 +34,7 @@ module.exports.session = {
   // prefix: 'sess:'
   host: 'grideye.redistogo.com',
   port: 9960,
-  url: process.env.REDISTOGO_URL,
+  url: process.env.REDISTOGO_URL
 
 
   // Uncomment the following lines to use your Mongo adapter as a session store
@@ -57,3 +57,6 @@ module.exports.session = {
   // stringify: true
 
 };
+
+if(process.env.NODE_ENV != 'production')
+  module.exports.session = {};
