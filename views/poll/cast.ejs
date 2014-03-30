@@ -1,5 +1,6 @@
 <section>
-  <form method="post" action="/vote" class="content" id="vote_form">
+  <form action="/vote" method="post" class="content" id="vote_form">
+    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
     <h3><%= poll.title %></h3>
     <ul class="items">
       <% _.each(poll.items, function (item) { %>
