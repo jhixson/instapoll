@@ -8,5 +8,5 @@
  */
 module.exports = function(req, res, next) {
   res.locals.page_title = 'instapoll';
-  return next();
+  next();
 };

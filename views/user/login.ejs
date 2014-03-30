@@ -1,5 +1,12 @@
 <section>
   <form action="/session/create" method="post" class="content pure-form pure-form-stacked">
+    <% if(flash) { %>
+      <p class="flash <%= _.first(Object.keys(flash)) %>">
+        <% Object.keys(flash).forEach(function(msg) { %>
+          <%= flash[msg] %>
+        <% }) %>
+      </p>
+    <% } %>
     <input type="hidden" name="_csrf" value="<%= _csrf %>" />
     <fieldset>
       <legend>Log in to your account</legend>

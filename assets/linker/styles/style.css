@@ -30,6 +30,19 @@ h3 {
 p.center {
   text-align: center; }
 
+p.flash {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  color: #333; }
+  p.flash.err {
+    background-color: #fcc; }
+  p.flash.success {
+    background-color: #afa; }
+  p.flash.msg {
+    background-color: #eef; }
+
 section {
   *zoom: 1;
   max-width: 960px;

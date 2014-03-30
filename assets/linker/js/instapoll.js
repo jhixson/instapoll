@@ -4,6 +4,7 @@ Instapoll = {
     $('form').on('click', 'a.remove-item', Instapoll.removeItemField);
     $('ul.items li a').click(Instapoll.selectItem);
     $('#vote_form').submit(Instapoll.submitVote);
+    $('p.flash').delay(5000).slideUp('fast');
   },
   addItemField: function(e) {
     e.preventDefault();

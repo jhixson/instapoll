@@ -14,10 +14,15 @@ module.exports = {
   },
 
   create: function(req, res, next) {
-    passport.authenticate('local', { failureRedirect: '/login' }, function (err, user) {
+    passport.authenticate('local', function (err, user) {
       // Log the user in
       req.logIn(user, function (err) {
-        if (err) return res.send(err, 500);
+        if (err) {
+          req.session.flash = {
+            err: 'Username/password is invalid. Please try again.'
+          };
+          return res.redirect('/login');
+        }
         res.redirect('/');
       });
 
@@ -27,7 +32,10 @@ module.exports = {
   facebook: function (req, res, next) {
     passport.authenticate('facebook', { failureRedirect: '/login', scope: ['email'] }, function (err, user) {
       req.logIn(user, function (err) {
-        if (err) return res.send(err, 500);
+        if (err) {
+          // set a flash message here...
+          return res.redirect('/login');
+        }
         res.redirect('/');
       });
     })(req, res, next);
@@ -36,7 +44,10 @@ module.exports = {
   twitter: function (req, res, next) {
     passport.authenticate('twitter', { failureRedirect: '/login', scope: ['email'] }, function (err, user) {
       req.logIn(user, function (err) {
-        if (err) return res.send(err, 500);
+        if (err) {
+          // set a flash message here...
+          return res.redirect('/login');
+        }
         res.redirect('/');
       });
     })(req, res, next);

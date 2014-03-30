@@ -16,8 +16,7 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access) 
-  //'*': true,
-  '*': 'pageTitle',
+  '*': ['flash', 'pageTitle'],
   UserController: {
     delete: 'isAdmin',
     update: 'isAdmin' // we'll have to adjust this if we ever want to allow user-level 'profile' updating

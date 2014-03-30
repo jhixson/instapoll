@@ -35,6 +35,16 @@ h3 {
 }
 
 p.center { text-align: center; }
+p.flash {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  color: #333;
+  &.err { background-color: #fcc; }
+  &.success { background-color: #afa; }
+  &.msg { background-color: #eef; }
+}
 
 section {
   @include outer-container;
