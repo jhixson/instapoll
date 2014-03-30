@@ -24,6 +24,22 @@ module.exports = {
     res.view({ title: 'Sign up' });
   },
 
+  /*
+  update: function(req, res) {
+    var user_id = req.param('id');
+    User.findOne(user_id).done(function(err, user) {
+      if (err) return res.send(err, 500);
+
+      user.username = req.param('username');
+      user.email = req.param('email');
+      user.isAdmin = req.user.isAdmin && req.param('isAdmin');
+      user.save(function(err) {
+        res.json(user);
+      });
+    });
+  },
+  */
+
   polls: function(req, res) {
     User.findOne(req.user.id).populate('polls').done(function(err, user) {
       res.view({ user: user, title: 'My polls' });

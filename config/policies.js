@@ -16,8 +16,20 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access) 
-  '*': true,
-  '*': 'pageTitle'
+  //'*': true,
+  '*': 'pageTitle',
+  UserController: {
+    delete: 'isAdmin',
+    update: 'isAdmin' // we'll have to adjust this if we ever want to allow user-level 'profile' updating
+  },
+  ItemController: {
+    delete: 'isAdmin',
+    update: 'isAdmin'
+  },
+  VoteController: {
+    delete: 'isAdmin',
+    update: 'isAdmin'
+  }
 
   /*
 	// Here's an example of adding some policies to a controller

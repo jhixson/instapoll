@@ -27,6 +27,11 @@ module.exports = {
 
     uid: 'integer',
 
+    isAdmin: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+
     polls: {
       collection: 'poll',
       via: 'user'
@@ -37,6 +42,7 @@ module.exports = {
       delete obj.password;
       delete obj.encrypted_password;
       delete obj._csrf;
+      delete obj.isAdmin;
       return obj;
     },
 
