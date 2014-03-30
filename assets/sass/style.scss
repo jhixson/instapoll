@@ -56,7 +56,7 @@ section {
     @include media($mobile) {
       @include span-columns(6);
       @include shift(0);
-      input[type=text], input[type=email], input[type=password] { width: 100%; }
+      input[type=text], input[type=email], input[type=password] { width: 91%; }
     }
     a.add-item {
       display: block;

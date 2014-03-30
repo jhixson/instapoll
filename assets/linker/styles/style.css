@@ -73,7 +73,7 @@ section {
         section .content:last-child {
           margin-right: 0; }
         section .content input[type=text], section .content input[type=email], section .content input[type=password] {
-          width: 100%; } }
+          width: 91%; } }
     section .content a.add-item {
       display: block;
       margin: 12px 0;
