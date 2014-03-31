@@ -18,15 +18,15 @@ module.exports.policies = {
   // (`true` allows public access) 
   '*': ['flash', 'pageTitle'],
   UserController: {
-    delete: 'isAdmin',
+    destroy: 'isAdmin',
     update: 'isAdmin' // we'll have to adjust this if we ever want to allow user-level 'profile' updating
   },
   ItemController: {
-    delete: 'isAdmin',
+    destroy: 'isAdmin',
     update: 'isAdmin'
   },
   VoteController: {
-    delete: 'isAdmin',
+    destroy: 'isAdmin',
     update: 'isAdmin'
   }
 

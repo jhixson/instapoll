@@ -1,6 +1,6 @@
 <section>
   <form action="/session/create" method="post" class="content pure-form pure-form-stacked">
-    <% if(flash) { %>
+    <% if(_.any(flash)) { %>
       <p class="flash <%= _.first(Object.keys(flash)) %>">
         <% Object.keys(flash).forEach(function(msg) { %>
           <%= flash[msg] %>
