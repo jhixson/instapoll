@@ -24,6 +24,26 @@ module.exports = {
     res.view({ title: 'Sign up' });
   },
 
+  create: function(req, res) {
+    var user_obj = {
+      username: req.param('username'),
+      password: req.param('password')
+    };
+    User.create(user_obj).done(function(err, user) {
+      if (err) return res.send(err, 500);
+
+      req.logIn(user, function (err) {
+        if (err) {
+          req.session.flash = {
+            err: 'Error creating account. Please try again.'
+          };
+          return res.redirect('/login');
+        }
+        res.redirect('/');
+      });
+    });
+  },
+
   /*
   update: function(req, res) {
     var user_id = req.param('id');
