@@ -2,9 +2,10 @@ Instapoll = {
   init: function() {
     $('a.add-item').click(Instapoll.addItemField);
     $('form').on('click', 'a.remove-item', Instapoll.removeItemField);
+    $('form').has('input[required]').submit(Instapoll.validateForm);
     $('ul.items li a').click(Instapoll.selectItem);
     $('#vote_form').submit(Instapoll.submitVote);
-    $('p.flash').delay(5000).slideUp('fast');
+    Instapoll.clearFlash();
   },
   addItemField: function(e) {
     e.preventDefault();
@@ -26,8 +27,11 @@ Instapoll = {
     var item = $('ul.items li a.active');
     if(item.length > 0)
       $('input[name=item_id]').val(item.data('item'));
-    else
+    else {
       e.preventDefault();
+      $('section form').find('p.flash').remove().end().prepend('<p class="flash err">Please choose an item.</p>');
+      Instapoll.clearFlash();
+    }
   },
   addVote: function(message) {
     var list_item = $('ul.items li[data-item='+message.data.item+']');
@@ -58,9 +62,31 @@ Instapoll = {
   pollAdded: function(message) {
     $('ul.polls').prepend('<li style="display: none;"><a href="/poll/cast/'+message.data.id+'">'+message.data.title+'</a></li>').find('li:first').fadeIn('fast');
     $('ul.polls li:eq(4) ~ li').remove();
+  },
+  clearFlash: function() {
+    $('p.flash').delay(5000).slideUp('fast');
+  },
+  validateForm: function(e) {
+    if(!$(this).validate()) {
+      e.preventDefault();
+      $('section form').find('p.flash').remove().end().prepend('<p class="flash err">Please complete all fields.</p>');
+      Instapoll.clearFlash();
+    }
   }
 };
 
 $(document).ready(function() {
   Instapoll.init();
 });
+
+// the simplest validation plugin ever?
+(function ( $ ) {
+  $.fn.validate = function() {
+    this.find('[required]').each(function() {
+      $(this).removeClass('error');
+      if($(this).val() === '')
+        $(this).addClass('error');
+    });
+    return this.find('[required].error').length === 0;
+  };
+}( jQuery ));

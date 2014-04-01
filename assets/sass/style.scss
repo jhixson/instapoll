@@ -137,7 +137,10 @@ section {
     ul.polls {
       margin: 0.5em 0;
     }
-    &.pure-form-stacked input { margin: 0.25em 0 0.5em 0; }
+    &.pure-form-stacked input {
+      margin: 0.25em 0 0.5em 0;
+      &.error { border-color: #ca3c3c; }
+    }
     &.pure-form-stacked input[type=text] { display: inline-block; }
     a.remove-item {
       color: #ca3c3c;

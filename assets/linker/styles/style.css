@@ -155,6 +155,8 @@ section {
       margin: 0.5em 0; }
     section .content.pure-form-stacked input {
       margin: 0.25em 0 0.5em 0; }
+      section .content.pure-form-stacked input.error {
+        border-color: #ca3c3c; }
     section .content.pure-form-stacked input[type=text] {
       display: inline-block; }
     section .content a.remove-item {

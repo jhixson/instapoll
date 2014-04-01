@@ -30,7 +30,12 @@ module.exports = {
       password: req.param('password')
     };
     User.create(user_obj).done(function(err, user) {
-      if (err) return res.send(err, 500);
+      if (err) {
+        req.session.flash = {
+          err: 'Error creating account. Please try again.'
+        };
+        return res.redirect('/login');
+      }
 
       req.logIn(user, function (err) {
         if (err) {
