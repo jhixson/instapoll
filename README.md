@@ -1,5 +1,5 @@
 # instapoll
-### a Sails application
+[Check it out on heroku!](http://instapoll.herokuapp.com)
 
 Instapoll is a basic voting app built on the awesome [Sails.js](https://github.com/balderdashy/sails) framework that provides real-time result updates via sockets. It's super alpha right now, but some of the upcoming features are:
 
